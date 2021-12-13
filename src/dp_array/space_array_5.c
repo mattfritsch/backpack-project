@@ -1,3 +1,5 @@
+#include "space_array.h"
+
 void view_chm(const struct states_array_t * states) {
   printf("CHM |\t");
 	for(int bag = 0; bag < (states->Vmax + 1); bag += 1) printf("%2d\t", bag);
