@@ -1,5 +1,6 @@
 #include "stdlib.h"
 #include "space_array.h"
+#include <assert.h>
 
 void free_states_array(struct states_array_t *states)
 {

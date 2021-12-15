@@ -22,7 +22,7 @@ PROG = $(patsubst %,$(BDIR)/%,$(_PROG))
 _DEP = bag.h dp_array.h dp_list.h elmlist.h global.h list.h objects.h prec.h space_array.h states.h
 DEP = $(patsubst %,$(IDIR)/%,$(_DEP))
 
-_OBJ = main.o list.o elmlist.o dp_array.o dp_list.o space_array.o space_array_1.o space_array_2.o space_array_3.o space_array_4.o space_array_5.o dp_rec.o dp_rec2.o objects.o objects_2.o
+_OBJ = main.o list.o elmlist.o dp_array.o dp_list.o dp_array/space_array.o dp_array/space_array_1.o dp_array/space_array_2.o dp_array/space_array_3.o dp_array/space_array_4.o dp_array/space_array_5.o rec/dp_rec.o rec/dp_rec2.o rec/objects.o rec/objects_2.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 # Toutes les étiquettes qui ne sont pas des fichiers sont déclarées ici
