@@ -18,6 +18,7 @@ struct objects_t
 };
 
 struct objects_t *new_objects(const int argc, char **argv, bool utility);
+/** @brief Consulter un object */
 void view_object(const struct object_t *object);
 void view_objet_set(const struct objects_t * set);
 #endif

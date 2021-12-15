@@ -18,42 +18,42 @@ struct list_t
 /****************
 Constructors & co
 ****************/
-/** Create empty list  */
+/** @brief Créer une liste vide*/
 struct list_t *new_list();
-
+/** @brief Copie une liste*/
 struct list_t *listcpy(const struct list_t *L);
 
-/** Delete list its elements and possibly the data they hold */
+/** @brief Delete list its elements and possibly the data they hold */
 void del_list(struct list_t **L, void (*ptrf)());
 
-/** Is list L empty ? */
+/** @brief Is list L empty ? */
 bool is_empty(const struct list_t *L);
 
 /********************
 Accessors & modifiers
 ********************/
-/** Gimme the head of L*/
+/** @brief Gimme the head of L*/
 struct elmlist_t *get_head(const struct list_t *L);
 
-/** Gimme the tail of L */
+/** @brief Gimme the tail of L */
 struct elmlist_t *get_tail(const struct list_t *L);
 
-/** How many elements does the list contain ? */
+/** @brief How many elements does the list contain ? */
 int get_numelm(const struct list_t *L);
 
 /***************************
  * Advanced member functions
  ***************************/
-/** Add a brand new list element holding data to the head of L */
+/** @brief Add a brand new list element holding data to the head of L */
 void cons(struct list_t *L, void *data);
 
-/** Add  a brand new list element holding data to the tail of L */
+/** @brief Add  a brand new list element holding data to the tail of L */
 void queue(struct list_t *L, void *data);
 
-/** Insert data at place localized by cmp_ptr */
+/** @brief Insert data at place localized by cmp_ptr */
 void insert_ordered(struct list_t *L, void *data, bool (*cmp_ptrf)());
 
-/** Display list on stdout stream */
+/** @brief Display list on stdout stream */
 void view_list(struct list_t *L, void (*ptrf)());
 
 #endif
