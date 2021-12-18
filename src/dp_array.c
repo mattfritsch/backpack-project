@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include "dp_array.h"
 #include "objects.h"
+#include "space_array.h"
 
 // void dp_array(const bool utility, const int Vmax, const struct objects_t *objects)
 void dp_array(const int Vmax, const struct objects_t *objects)

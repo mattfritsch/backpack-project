@@ -1,6 +1,6 @@
 #include "space_array.h"
 
-void view_path_array(struct states_array_t *states, struct objects_t *set)
+void view_path_array(const struct states_array_t *states, const struct objects_t *set)
 {
   int obj = states->num_obj;
   int vol = states->Vmax;

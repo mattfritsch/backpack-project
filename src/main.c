@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "dp_array.h"
+#include "dp_list.h"
+#include "prec.h"
 
 int main(int argc, char **argv)
 {
