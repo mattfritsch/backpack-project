@@ -1,5 +1,4 @@
 #include "space_array.h"
-#include <stdlib.h>
 
 /**
  * Private Function

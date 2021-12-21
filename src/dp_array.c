@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <assert.h>
 #include "dp_array.h"
 #include "objects.h"
 #include "space_array.h"

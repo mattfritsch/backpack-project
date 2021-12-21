@@ -1,7 +1,7 @@
-#include "stdlib.h"
 #include "space_array.h"
-#include "space_array_2.c"
 #include <assert.h>
+
+void init_opt_chm(struct states_array_t *states);
 
 /* A VERIFIER */
 void free_states_array(struct states_array_t *states)
