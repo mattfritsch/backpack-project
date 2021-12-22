@@ -5,19 +5,21 @@
  **/
 void init_opt_chm(struct states_array_t *states)
 {
-    states->OPT = NULL; /* A VERIFIER */
-    states->CHM = NULL; /* A VERIFIER */
+    states->OPT = (state_t *)calloc(1, sizeof(struct states_array_t)); /* A VERIFIER */
+    states->CHM = (state_t *)calloc(1, sizeof(struct states_array_t)); /* A VERIFIER */
+
     for (int obj = 1; obj <= states->num_obj; obj += 1)
     {
         for (int bag = 0; bag <= states->Vmax; bag += 1)
         {
             int idx = obj * bag; /* A VERIFIER */
-            states->OPT[idx] = UNDTR;
-            states->CHM[idx] = UNDTR;
+            states->OPT[idx] = 0;
+            states->CHM[idx] = 0;
         }
     }
+
     for (int bag = 0; bag <= states->Vmax; bag += 1)
     {
-        states->CHM[bag] = UNDTR;
+        states->CHM[bag] = 0;
     }
 }
