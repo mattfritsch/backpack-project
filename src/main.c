@@ -36,9 +36,9 @@ int main(int argc, char **argv)
 #endif
   if (mode == 'R')
   {
-    /*struct retained_t *my_bag = new_bag();
+    struct retained_t *my_bag = new_bag();
     prec(Vmax, object_set, my_bag);
-    view_bagpack(my_bag, "Final selection");*/
+    view_bagpack(my_bag, "Final selection");
   }
   else if (mode == 'A')
   {
@@ -47,6 +47,7 @@ int main(int argc, char **argv)
   else
   {
     //dp_list(Vmax, object_set);
+    printf("List\n");
   }
   return EXIT_SUCCESS;
 }

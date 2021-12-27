@@ -54,7 +54,7 @@ void del_list(struct list_t **L, void (*ptrf)())
         {
             struct elmlist_t *T = E;
             E = E->suc;
-            del_elmlist_t(&T);
+            del_elmlist(&T);
         }
     }
     else
@@ -76,7 +76,7 @@ void insert_after(struct list_t *L, void *data, struct elmlist_t *place)
         cons(L, data);
     else
     {
-        struct elmlist_t *new = new_lst_elm(data);
+        struct elmlist_t *new = new_elmlist(data);
         assert(new);
         new->suc = place->suc;
         place->suc = new;
@@ -88,7 +88,7 @@ void insert_after(struct list_t *L, void *data, struct elmlist_t *place)
 
 void insert_ordered(struct list_t *L, void *data, bool (*cmp_ptrf)())
 {
-    if (emptyLst(L))
+    if (is_empty(L))
     {
         cons(L, data);
     }
@@ -139,5 +139,12 @@ int setNumelm(struct list_t *L, int numElm)
 
 struct list_t *listcpy(const struct list_t *L)
 {
-    /* TODO */
+    struct list_t *newL = (struct list_t *)calloc(1, sizeof(struct list_t));
+    for (struct elmlist_t *E = L->head; E; E = E->suc)
+    {
+        setNumelm(newL, L->numelm);
+        newL->head = L->head;
+        newL->tail = L->tail;
+    }
+    return newL;
 }

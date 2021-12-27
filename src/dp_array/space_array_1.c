@@ -11,20 +11,48 @@ void push_object_in_array(struct states_array_t *states, const struct objects_t 
     int pred = (i - 1) * (states->Vmax + 1) + bag; // Calculer l'index de l'état pour l'objet (i-1)
     int curr = i * (states->Vmax + 1) + bag;       // Calculer l'index de l'état pour l'objet (i)
     int OPT1 = states->OPT[pred];
-    states->CHM[curr] = INFTY; //hyp.: l'objet i n'est pas dans le sac
-    if (objects->objects->volume < states->Vmax)
-    {                                                       // s'il y a de la place dans le sac
-      int pred_without_i = (-1) * (states->Vmax + 1) + bag; // L'index du bag SANS l'objet (i)
+    states->CHM[curr] = INFTY;                //hyp.: l'objet i n'est pas dans le sac
+    if (objects->objects[curr].volume <= bag) // s'il y a de la place dans le sac
+    {
+      int pred_without_i = (states->Vmax + 1 - objects->objects[curr].volume) + bag; // L'index du bag SANS l'objet (i)
       int OPT2 = states->OPT[pred_without_i];
-      if (states->OPT[curr] != INFTY)
-      { // Sélectionne la meilleur configuration
-        states->OPT[curr] = OPT1;
-        states->CHM[curr] = states->OPT[pred]; // Noter que l'objet i est dans le sac
+      if (OPT1 <= OPT2) // Sélectionne la meilleur configuration
+      {
+        states->OPT[curr] = OPT2;
+        states->CHM[curr] = states->OPT[pred_without_i]; // Noter que l'objet i est dans le sac
       }
       else
-        states->OPT[curr] = OPT2;
+        states->OPT[curr] = OPT1;
     }
     else
-      states->OPT[curr] = INFTY; // s'il n'y a pas de place
+      states->OPT[curr] = OPT1; // s'il n'y a pas de place
   }
 }
+
+// void push_object_in_array(struct states_array_t *states, const struct objects_t *objects, int i)
+// {
+//   /* Faites attention que les objets dans LO sont rangés à partir de 0
+//     tandis qu'ils sont rangés à partue de 1 dans OPT (et CHM) */
+//   for (int bag = 0; bag < (states->Vmax + 1); bag += 1)
+//   {
+//     // Parcourir chaque état du sac-à-dos
+//     int curr = i * states->Vmax + objects->objects[i].volume + bag; // Calculer l'index de l'état pour l'objet (i)
+//     int pred = curr - states->Vmax + bag;                           // Calculer l'index de l'état pour l'objet (i-1)
+//     int OPT1 = states->OPT[pred];
+//     states->CHM[curr] = INFTY; //hyp.: l'objet i n'est pas dans le sac
+//     if (objects->objects->volume < states->Vmax)
+//     {                                                          // s'il y a de la place dans le sac
+//       int pred_without_i = pred - objects->objects[i].utility; // L'index du bag SANS l'objet (i)
+//       int OPT2 = states->OPT[pred_without_i] + objects->objects[i].utility;
+//       if (OPT2 > OPT1)
+//       { // Sélectionne la meilleur configuration
+//         states->OPT[curr] = OPT2;
+//         states->CHM[curr] = states->OPT[pred]; // Noter que l'objet i est dans le sac
+//       }
+//       else
+//         states->OPT[curr] = OPT1;
+//     }
+//     else
+//       states->OPT[curr] = INFTY; // s'il n'y a pas de place
+//   }
+// }
