@@ -45,29 +45,17 @@ void view_list(struct list_t *L, void (*ptrf)())
     printf("]\n\n");
 }
 
-void del_list(struct list_t **L, void (*ptrf)())
+void del_list(struct list_t *L, void (*ptrf)())
 {
-    assert(L && *L);
-    if ((*ptrf) == NULL)
+    struct elmlist_t *E = L->head;
+    while (E != NULL)
     {
-        for (struct elmlist_t *E = (*L)->head; E;)
-        {
-            struct elmlist_t *T = E;
-            E = E->suc;
-            del_elmlist(&T);
-        }
+        struct elmlist_t *suc = E->suc;
+        (*ptrf)(E);
+        E = suc;
     }
-    else
-    {
-        for (struct elmlist_t *E = (*L)->head; E;)
-        {
-            struct elmlist_t *T = E;
-            E = E->suc;
-            (*ptrf)(T->data);
-        }
-    }
-    free(*L);
-    *L = NULL;
+    free(L);
+    L = NULL;
 }
 
 void insert_after(struct list_t *L, void *data, struct elmlist_t *place)
@@ -124,7 +112,17 @@ struct elmlist_t *get_tail(const struct list_t *L)
 
 void queue(struct list_t *L, void *data)
 {
-    L->tail = data;
+    struct elmlist_t *elm = new_elmlist(data);
+    if (L->numelm == 0)
+    {
+        L->head = elm;
+    }
+    else
+    {
+        L->tail->suc = elm;
+    }
+    L->numelm++;
+    L->tail = elm;
 }
 
 int get_numelm(const struct list_t *L)
@@ -139,12 +137,10 @@ int setNumelm(struct list_t *L, int numElm)
 
 struct list_t *listcpy(const struct list_t *L)
 {
-    struct list_t *newL = (struct list_t *)calloc(1, sizeof(struct list_t));
-    for (struct elmlist_t *E = L->head; E; E = E->suc)
+    struct list_t *newL = new_list();
+    for (struct elmlist_t *E = L->head; E != NULL; E = E->suc)
     {
-        setNumelm(newL, L->numelm);
-        newL->head = L->head;
-        newL->tail = L->tail;
+        queue(newL, E->data);
     }
     return newL;
 }

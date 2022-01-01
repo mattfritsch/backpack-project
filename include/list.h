@@ -2,6 +2,7 @@
 #define _LIST_
 
 #include "elmlist.h"
+#include "objects.h"
 #include <stdbool.h>
 
 /**
@@ -24,7 +25,7 @@ struct list_t *new_list();
 struct list_t *listcpy(const struct list_t *L);
 
 /** @brief Delete list its elements and possibly the data they hold */
-void del_list(struct list_t **L, void (*ptrf)());
+void del_list(struct list_t *L, void (*ptrf)());
 
 /** @brief Is list L empty ? */
 bool is_empty(const struct list_t *L);

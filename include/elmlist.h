@@ -2,6 +2,7 @@
 #define _ELMLIST_
 
 #include <stdbool.h>
+#include "outils.h"
 
 /**
 Abstract type modeling a list element containing
@@ -17,7 +18,8 @@ struct elmlist_t
 
 struct elmlist_t *new_elmlist(void *data);
 /** @brief Supprime un élément de la liste*/
-void del_elmlist(struct elmlist_t **E);
+void del_elmlist(struct elmlist_t **ptrE, void (*ptrf)());
+//void del_elmlist(struct elmlist_t **E);
 /** @brief Renvoie le successeur d'un élément de la liste*/
 struct elmlist_t *get_suc(struct elmlist_t *E);
 /** @brief Renvoie le prédecesseur d'un élément de la liste*/

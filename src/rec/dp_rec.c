@@ -14,18 +14,19 @@ void bagcpy(struct retained_t *duplicata, const struct retained_t *bagpack)
   duplicata->utilities_sum = bagpack->utilities_sum;
 }
 
-void free_bag(struct retained_t *bagpack)
+void free_bag(struct retained_t **bagpack)
 {
   assert(bagpack);
-  del_list(&bagpack->objects_list, &rmInteger);
-  free(bagpack);
-  bagpack = NULL;
+  del_list((*bagpack)->objects_list, &rmObject);
+  free(*bagpack);
+  *bagpack = NULL;
 }
 
 void clean_bag(struct retained_t *bagpack)
 {
-  assert(bagpack);
-  del_list(&bagpack->objects_list, &rmInteger);
+  del_list(bagpack->objects_list, &rmObject);
+  bagpack->objects_list = new_list();
+  assert(bagpack->objects_list);
   bagpack->utilities_sum = 0;
 }
 
@@ -41,9 +42,4 @@ void view_bagpack(struct retained_t *bagpack, const char *title)
   printf("\n*****************\nVIEW BAGPACKAGING\t%s\n", title);
   view_list(bagpack->objects_list, ptr_view_fct);
   printf("\t\tWith utilities sum = %d\n\n", bagpack->utilities_sum);
-}
-
-void rmInteger(int *i)
-{
-  free(i);
 }

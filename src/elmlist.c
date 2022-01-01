@@ -14,9 +14,10 @@ struct elmlist_t *new_elmlist(void *data)
     return E;
 }
 
-void del_elmlist(struct elmlist_t **E)
+void del_elmlist(struct elmlist_t **E, void (*ptrf)())
 {
     assert(E && *E);
+    //(*ptrf)((*E)->data);
     free(*E);
     *E = NULL;
 }
@@ -53,4 +54,5 @@ void set_data(struct elmlist_t *E, void *data)
 
 void view_elmlist(struct elmlist_t *E, void (*ptrf)())
 {
+    (*ptrf)(E->data);
 }
