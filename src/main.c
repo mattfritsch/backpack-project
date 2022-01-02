@@ -46,8 +46,7 @@ int main(int argc, char **argv)
   }
   else
   {
-    //dp_list(Vmax, object_set);
-    printf("List\n");
+    dp_list(Vmax, object_set);
   }
   return EXIT_SUCCESS;
 }
