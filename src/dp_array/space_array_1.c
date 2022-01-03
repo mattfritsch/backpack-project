@@ -11,15 +11,15 @@ void push_object_in_array(struct states_array_t *states, const struct objects_t 
     int pred = (i - 1) * (states->Vmax + 1) + bag; // Calculer l'index de l'état pour l'objet (i-1)
     int curr = i * (states->Vmax + 1) + bag;       // Calculer l'index de l'état pour l'objet (i)
     int OPT1 = states->OPT[pred];
-    states->CHM[curr] = INFTY;                //hyp.: l'objet i n'est pas dans le sac
-    if (objects->objects[curr].volume <= bag) // s'il y a de la place dans le sac
+    states->CHM[curr] = INFTY;                 //hyp.: l'objet i n'est pas dans le sac
+    if (objects->objects[i - 1].volume <= bag) // s'il y a de la place dans le sac
     {
-      int pred_without_i = (states->Vmax + 1 - objects->objects[curr].volume) + bag; // L'index du bag SANS l'objet (i)
-      int OPT2 = states->OPT[pred_without_i];
+      int pred_without_i = pred - objects->objects[i - 1].volume; // L'index du bag SANS l'objet (i)
+      int OPT2 = states->OPT[pred_without_i] + objects->objects[i - 1].utility;
       if (OPT1 <= OPT2) // Sélectionne la meilleur configuration
       {
         states->OPT[curr] = OPT2;
-        states->CHM[curr] = states->OPT[pred_without_i]; // Noter que l'objet i est dans le sac
+        states->CHM[curr] = bag - objects->objects[i - 1].volume; // Noter que l'objet i est dans le sac
       }
       else
         states->OPT[curr] = OPT1;
