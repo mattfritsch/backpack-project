@@ -1,4 +1,5 @@
-# backpack-project
+# backpack-project 
+**Binôme : AZANCOTH Valentin, FRITSCH Matthieu**
 ## 1) Etat du projet
 ### 1.1) Version exécutable
 - [x] Version récursive
