@@ -6,7 +6,7 @@
 - [ ] Version dynamique à mémoire dynamique
 ### 1.2) Version non-exécutable
 Malheureusement, après avoir essayé de faire la version dynamique à mémoire dynamique,  nous n'avons pas réussi. Donc la fonction dp-list ne fait rien. 
-## 2) Consigne à l'éxécution
+## 2) Consigne à l'exécution
 Pour exécuter le projet, il suffit : 
 * D'ouvrir un terminal à la racine de notre projet.
 * Puis écrire ```make``` dans le terminal afin de compiler le projet.
